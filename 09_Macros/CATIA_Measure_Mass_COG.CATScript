@@ -1,0 +1,47 @@
+'-------------------------------------------------------
+'Measuring Mass and Centre of Gravity of a Product
+'-------------------------------------------------------
+'Macro: CATIA_Measure_Mass_COG.CATScript
+'Version: 1
+'Code: CATIA CATScript
+'Purpose: Measuring Mass and Centre of Gravity of a Product
+'Author: Manfred Schwarz, Stefan Maxl, IMVS
+'Date: 19.01.2018
+'-------------------------------------------------------
+
+'Start code
+Sub CATMain()
+
+'Definition that SRT is active product
+Set SRT = CATIA.ActiveDocument
+
+'Active product to be measured
+Set oProduct = SRT.Product
+Set oInertia = oProduct.GetTechnologicalObject("Inertia")
+
+'Definition that mass will be measured
+Dim dMass As Single
+dMass = oInertia.Mass
+
+'Definition that COG will be measured by coordinates – (2) indicates measured from X-Y
+Dim dCoordinates(2)
+oInertia.GetCOGPosition dCoordinates
+
+'Load existing txt file to save mass and centre of gravity data
+Dim File As File
+Set File = CATIA.FileSystem.GetFile ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\06_Exchange\catia_inertia.txt")
+
+
+'Defining how to write mass and COG into txt file 0=X, 1=Y, 2=Z
+Dim DStrom As TextStream
+Set DStrom = File.OpenAsTextStream ("ForAppending")
+DStrom.Write cstr(dMass) & " "
+DStrom.Write cstr(dCoordinates(0)) & " " 'X
+DStrom.Write cstr(dCoordinates(1)) & " " 'Y
+DStrom.Write cstr(dCoordinates(2)) 'Z
+DStrom.Close
+
+'End code
+End Sub
+
+

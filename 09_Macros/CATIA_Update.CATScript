@@ -1,0 +1,28 @@
+'-------------------------------------------------------
+'Update Product
+'-------------------------------------------------------
+'Macro: CATIA_Update.CATScript
+'Version: 1
+'Code: CATIA CATScript
+'Purpose: Update Part or Product
+'Author: Manfred Schwarz, Stefan Maxl, IMVS
+'Date: 10.01.2018
+'-------------------------------------------------------
+Language="VBSCRIPT"
+
+'Start code
+Sub CATMain()
+
+'Set product as active product
+Dim productDocument1 As Document
+Set productDocument1 = CATIA.ActiveDocument
+
+'Set product as product
+Dim product1 As Product
+Set product1 = productDocument1.Product
+
+'Update
+product1.Update 
+
+'End code
+End Sub

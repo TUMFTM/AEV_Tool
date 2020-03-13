@@ -1,0 +1,43 @@
+'-------------------------------------------------------
+'Load/Load Product, Update Product, Save Product
+'-------------------------------------------------------
+'Macro: CATIA_Open_Update_Save.CATScript
+'Version: 1
+'Code: CATIA CATScript
+'Purpose: Start, Update and Save Part or Product
+'Author: Stefan Maxl, Manfred Schwarz, IMVS
+'Date: 10.01.2018
+'-------------------------------------------------------
+
+'Start code
+Sub CATMain()
+
+
+
+'Declaration of a part/product as an object (with product same)
+Dim SRT_2030 As ProductDocument 
+
+
+'Open part/product via link
+Set SRT_2030 = CATIA.Documents.Open ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\07_CAD\SRT_2030.CATProduct")
+
+'Update product
+SRT_2030.Product.Update
+
+'Save active product
+CATIA.ActiveDocument.Save
+
+'Set trigger to determine when action is finished, trigger is linked to existing txt file
+Dim File As File
+Set File = CATIA.FileSystem.GetFile ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\06_Exchange\catia_trigger.txt")
+
+'Action is done, when "trigger" is appearing in txt file, further progress done by Matlab
+Dim DStrom As TextStream
+Set DStrom = File.OpenAsTextStream ("ForAppending")
+DStrom.Write "trigger" & Chr(10)
+DStrom.Close
+
+'End code
+End Sub
+
+

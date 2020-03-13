@@ -1,0 +1,117 @@
+'-------------------------------------------------------
+'Taking Screenshots of a Product
+'-------------------------------------------------------
+'Macro: CATIA_Screenshots.CATScript
+'Version: 1
+'Code: CATIA CATScript
+'Purpose: Taking Screenshots of a Product
+'Author: Manfred Schwarz, Stefan Maxl, IMVS
+'Date: 10.01.2018
+'-------------------------------------------------------
+
+'Start code
+Sub CATMain()
+
+'CATIA.RefreshDisplay = False
+
+'Turn off popups
+CATIA.DisplayFileAlerts = False
+
+'Set the active window as the viewer
+Dim ObjViewer3D As Viewer3D
+Set objViewer3D = CATIA.ActiveWindow.ActiveViewer
+
+'Set camera angle to certain view
+Dim objCamera3D As Camera3D
+
+'Turning off the spec tree
+Dim objSpecWindow As SpecsAndGeomWindow
+Set objSpecWindow = CATIA.ActiveWindow
+objSpecWindow.Layout = catWindowGeomOnly
+
+'Toggle Compass
+CATIA.StartCommand("Compass")
+
+'Changing background color to white
+Dim DBLBackArray(2)
+objViewer3D.GetBackgroundColor(dblBackArray)
+Dim dblWhiteArray(2)
+dblWhiteArray(0) = 1
+dblWhiteArray(1) = 1
+dblWhiteArray(2) = 1
+objViewer3D.PutBackgroundColor(dblWhiteArray)
+
+'Clearing selection for picture
+CATIA.ActiveDocument.Selection.Clear()
+
+'Increasing to fullscreen to obtain maximum resolution
+objViewer3D.FullScreen = True
+
+'File location to save image
+Dim fileloc As String
+fileloc = "C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\05_Images\CAD_Images\"
+
+'Names of images
+Dim ISO as String
+ISO="Bus_ISO.png"
+Dim Side as String
+Side ="Bus_Side.png"
+Dim Front as String
+Front ="Bus_Front.png"
+Dim file_ISO as String
+file_ISO = fileloc&ISO
+Dim file_Side as String
+file_Side = fileloc&Side
+Dim file_Front as String
+file_Front = fileloc&Front
+
+'Taking bus picture ISO view
+Set objCamera3D = CATIA.ActiveDocument.Cameras.Item(1)
+objViewer3D.Viewpoint3D = objCamera3D.Viewpoint3D
+objViewer3D.Reframe()
+objViewer3D.ZoomIn()
+objviewer3D.Capturetofile 4,file_ISO
+
+'Taking bus picture side view
+Set objCamera3D = CATIA.ActiveDocument.Cameras.Item(5)
+objViewer3D.Viewpoint3D = objCamera3D.Viewpoint3D
+objViewer3D.Reframe()
+objViewer3D.ZoomIn()
+objViewer3D.ZoomIn()
+objviewer3D.Capturetofile 4,file_Side
+
+'Taking bus picture front view
+Set objCamera3D = CATIA.ActiveDocument.Cameras.Item(2)
+objViewer3D.Viewpoint3D = objCamera3D.Viewpoint3D
+objViewer3D.Reframe()
+objViewer3D.ZoomIn()
+objViewer3D.ZoomIn()
+objviewer3D.Capturetofile 4,file_Front
+
+'Changing from fullscreen to normal view
+objViewer3D.FullScreen = False
+
+'Changing background color back
+objViewer3D.PutBackgroundColor(dblBackArray)
+
+'Turning the spec tree back on
+objSpecWindow.Layout = catWindowSpecsAndGeom
+
+'Toggle compass
+CATIA.StartCommand("Compass")
+
+'Set trigger to determine when action is finished, trigger is linked to existing txt file
+Dim File As File
+Set File = CATIA.FileSystem.GetFile ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\06_Exchange\catia_trigger.txt")
+
+'Action is done, when "trigger" is appearing in txt file, further progress done by Matlab
+Dim DStrom As TextStream
+Set DStrom = File.OpenAsTextStream ("ForAppending")
+DStrom.Write "trigger" & Chr(10)
+DStrom.Close
+
+'Close CATIA
+'CATIA.quit 
+
+'End code
+End Sub

@@ -1,0 +1,17 @@
+'-------------------------------------------------------
+'Close CATIA
+'-------------------------------------------------------
+'Macro: CATIA_Close.CATScript
+'Version: 1
+'Code: CATIA CATScript
+'Purpose: Close CATIA
+'Author: Manfred Schwarz, Stefan Maxl, IMVS
+'Date: 12.01.2018
+'-------------------------------------------------------
+Language="VBSCRIPT"
+
+Sub CATMain()
+
+CATIA.quit 
+
+End Sub

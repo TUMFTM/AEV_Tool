@@ -1,0 +1,115 @@
+'-------------------------------------------------------
+'Taking Screenshots of Interior
+'-------------------------------------------------------
+'Macro: CATIA_Screenshot_Interior.CATScript
+'Version: 1
+'Code: CATIA CATScript
+'Purpose: Taking Screenshots of Interior
+'Author: Manfred Schwarz, Stefan Maxl, IMVS
+'Date: 02.02.2018
+'-------------------------------------------------------
+
+'Start code
+Sub CATMain()
+
+'Declaration of a part/product as an object (with product same)
+Dim Interior As ProductDocument 
+
+'Open part/product via link
+Set Interior = CATIA.Documents.Open ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\07_CAD\03_Interior.CATProduct")
+
+'Update product
+Interior.Product.Update
+
+'Turn off popups
+CATIA.DisplayFileAlerts = False
+
+'Set the active window as the viewer
+Dim ObjViewer3D As Viewer3D
+Set objViewer3D = CATIA.ActiveWindow.ActiveViewer
+
+'Set camera angle to certain view
+Dim objCamera3D As Camera3D
+
+'Turning off the spec tree
+Dim objSpecWindow As SpecsAndGeomWindow
+Set objSpecWindow = CATIA.ActiveWindow
+objSpecWindow.Layout = catWindowGeomOnly
+
+'Toggle Compass
+CATIA.StartCommand("Compass")
+
+'Changing background color to white
+Dim DBLBackArray(2)
+objViewer3D.GetBackgroundColor(dblBackArray)
+Dim dblWhiteArray(2)
+dblWhiteArray(0) = 1
+dblWhiteArray(1) = 1
+dblWhiteArray(2) = 1
+objViewer3D.PutBackgroundColor(dblWhiteArray)
+
+'Clearing selection for picture
+CATIA.ActiveDocument.Selection.Clear()
+
+'Increasing to full screen to obtain maximum resolution
+objViewer3D.FullScreen = True
+
+'File location to save image
+Dim fileloc As String
+fileloc = "C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\05_Images\CAD_Images\"
+
+'Names of image
+Dim Lay as String
+Lay = "Bus_Interior.png"
+Dim file_Lay as String
+file_Lay = fileloc&Lay
+
+'Setting camera to side view
+Set objCamera3D = CATIA.ActiveDocument.Cameras.Item(6)
+objViewer3D.Viewpoint3D = objCamera3D.Viewpoint3D
+
+'Rotating interior view on z-axis, define rotation vectors for current viewpoint
+Dim vDirectionSight(2) As Variant
+objViewer3D.Viewpoint3D.GetSightDirection vDirectionSight
+
+'Perform rotation
+Dim RotationAngle As Double
+RotationAngle = 90
+
+'Rotates model
+objViewer3D.Rotate vDirectionSight, RotationAngle
+
+'Taking Interior Image view
+objViewer3D.Reframe()
+objViewer3D.ZoomIn()
+objviewer3D.Capturetofile 4,file_Lay
+
+'Changing from fullscreen to normal view
+objViewer3D.FullScreen = False
+
+'Changing background color back
+objViewer3D.PutBackgroundColor(dblBackArray)
+
+'Turning the spec tree back on
+objSpecWindow.Layout = catWindowSpecsAndGeom
+
+'Toggle compass
+CATIA.StartCommand("Compass")
+
+'Set trigger to determine when action is finished, trigger is linked to existing txt file
+Dim File As File
+Set File = CATIA.FileSystem.GetFile ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\06_Exchange\catia_trigger.txt")
+
+'Action is done, when "trigger" is appearing in txt file, further progress done by Matlab
+Dim DStrom As TextStream
+Set DStrom = File.OpenAsTextStream ("ForAppending")
+DStrom.Write "trigger" & Chr(10)
+DStrom.Close
+
+'End code
+End Sub
+
+
+
+
+
