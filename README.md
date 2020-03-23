@@ -49,10 +49,10 @@
 2. Please check if the 'catia_inertia.txt' and 'catia_trigger.txt' files in "\AEV-Tool\Git\AEV_Tool\06_Exchange" are empty with out any text.
 
 #Authors
-Ganesh Sethuraman [Corresponding Author: ganesh.sethuraman@tum-create.edu.sg; ganesh.sethuraman@tum.de]
-Manfred Schwarz
-Stefan maxl
-Phi Tran
+1. Ganesh Sethuraman [Corresponding Author: ganesh.sethuraman@tum-create.edu.sg; ganesh.sethuraman@tum.de]
+2. Manfred Schwarz
+3. Stefan Maxl
+4. Phi Tran
 
 #License
 This project is licensed under the LGPL 3.0 License - see the LICENSE.md file for details
