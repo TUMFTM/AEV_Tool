@@ -5,7 +5,7 @@
 'Version: 1
 'Code: CATIA CATScript
 'Purpose: Measuring Mass and Centre of Gravity of a Product
-'Author: Manfred Schwarz, Stefan Maxl, IMVS
+'Author: Ganesh Sethuraman, Manfred Schwarz, Stefan Maxl, IMVS
 'Date: 19.01.2018
 '-------------------------------------------------------
 
@@ -29,7 +29,7 @@ oInertia.GetCOGPosition dCoordinates
 
 'Load existing txt file to save mass and centre of gravity data
 Dim File As File
-Set File = CATIA.FileSystem.GetFile ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\06_Exchange\catia_inertia.txt")
+Set File = CATIA.FileSystem.GetFile ("C:\Ganesh_TUM\AEV-Tool\Git\AEV_Tool\06_Exchange\catia_inertia.txt")
 
 
 'Defining how to write mass and COG into txt file 0=X, 1=Y, 2=Z
