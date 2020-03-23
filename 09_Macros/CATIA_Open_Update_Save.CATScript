@@ -5,7 +5,7 @@
 'Version: 1
 'Code: CATIA CATScript
 'Purpose: Start, Update and Save Part or Product
-'Author: Stefan Maxl, Manfred Schwarz, IMVS
+'Author: Ganesh Sethuraman, Stefan Maxl, Manfred Schwarz, IMVS
 'Date: 10.01.2018
 '-------------------------------------------------------
 
@@ -19,7 +19,7 @@ Dim SRT_2030 As ProductDocument
 
 
 'Open part/product via link
-Set SRT_2030 = CATIA.Documents.Open ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\07_CAD\SRT_2030.CATProduct")
+Set SRT_2030 = CATIA.Documents.Open ("C:\Ganesh_TUM\AEV-Tool\Git\AEV_Tool\07_CAD\SRT_2030.CATProduct")
 
 'Update product
 SRT_2030.Product.Update
@@ -29,7 +29,7 @@ CATIA.ActiveDocument.Save
 
 'Set trigger to determine when action is finished, trigger is linked to existing txt file
 Dim File As File
-Set File = CATIA.FileSystem.GetFile ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\06_Exchange\catia_trigger.txt")
+Set File = CATIA.FileSystem.GetFile ("C:\Ganesh_TUM\AEV-Tool\Git\AEV_Tool\06_Exchange\catia_trigger.txt")
 
 'Action is done, when "trigger" is appearing in txt file, further progress done by Matlab
 Dim DStrom As TextStream
