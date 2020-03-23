@@ -18,8 +18,9 @@
 	- Use 'prefdir' to find the default MATLAB preferences directory.
 3. "AEV_Tool\09_Macros" Folder contains the script file for CATIA operations such as Opening, Closing, Updating the model. 
 	- The script file contains the location information of the parametric CAD models.
-	- The file location in the script file is "c:\users\ganesh.sethuraman\desktop\ganesh\aev_tool-stand alone\07_CAD\SRT_2030.CATProduct". Please change it to the corresponding directory.
-	- All the script files should be updated accordingly.
+	- The file location in the script file is "C:\Ganesh_TUM\AEV-Tool\Git\AEV_Tool\07_CAD\SRT_2030.CATProduct". Please change it to the corresponding installation directory of your computer.
+	- All the Macro CATscript files should be changed and updated accordingly.
+4. Set up the CAD Model by following the instructions in  '\AEV-Tool\Git\AEV_Tool\06_Exchange\Setting Up the Parametric CAD Model.pdf'
 	
 #Steps of running the tool
 
@@ -44,7 +45,7 @@
 
 #Trouble Shooting
 
-1. If the CAD visulaisation has problems - Please follow the steps in 'Design Table and Exporting_TXT.docx' available in the main folder.
+1. If the CAD visulaisation has problems - Please follow the steps in '\AEV-Tool\Git\AEV_Tool\06_Exchange\Design Table and Exporting_TXT.pdf' available in the main folder.
 2. Please check if the 'catia_inertia.txt' and 'catia_trigger.txt' files in "\AEV-Tool\Git\AEV_Tool\06_Exchange" are empty with out any text.
 
 #Authors
