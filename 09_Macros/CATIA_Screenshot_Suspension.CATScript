@@ -5,7 +5,7 @@
 'Version: 1
 'Code: CATIA CATScript
 'Purpose: Taking Screenshots of a Suspension
-'Author: Manfred Schwarz, Stefan Maxl, IMVS
+'Author: Ganesh Sethuraman, Manfred Schwarz, Stefan Maxl, IMVS
 'Date: 02.02.2018
 '-------------------------------------------------------
 
@@ -16,7 +16,7 @@ Sub CATMain()
 Dim Suspension As ProductDocument 
 
 'Start: Open part/product via link
-Set Suspension = CATIA.Documents.Open ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\07_CAD\05_Suspension.CATProduct")
+Set Suspension = CATIA.Documents.Open ("C:\Ganesh_TUM\AEV-Tool\Git\AEV_Tool\07_CAD\05_Suspension.CATProduct")
 
 'Update product
 Suspension.Product.Update
@@ -56,7 +56,7 @@ objViewer3D.FullScreen = True
 
 'File location to save image
 Dim fileloc As String
-fileloc = "C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\05_Images\CAD_Images\"
+fileloc = "C:\Ganesh_TUM\AEV-Tool\Git\AEV_Tool\05_Images\CAD_Images\"
 
 'Names of image
 Dim Sus as String
@@ -85,7 +85,7 @@ CATIA.StartCommand("Compass")
 
 'Set trigger to determine when action is finished, trigger is linked to existing txt file
 Dim File As File
-Set File = CATIA.FileSystem.GetFile ("C:\Users\ganesh.sethuraman\Desktop\Ganesh\AEV_Tool-Stand Alone\06_Exchange\catia_trigger.txt")
+Set File = CATIA.FileSystem.GetFile ("C:\Ganesh_TUM\AEV-Tool\Git\AEV_Tool\06_Exchange\catia_trigger.txt")
 
 'Action is done, when "trigger" is appearing in txt file, further progress done by Matlab
 Dim DStrom As TextStream
